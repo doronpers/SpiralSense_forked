@@ -187,7 +187,7 @@ def draw_spiral_view(ax, amplitude, pitch, meta, elev, azim, title):
     ax.set_zlim(0, 60)
     ax.set_axis_off()
     ax.view_init(elev=elev, azim=azim)
-    ax.set_facecolor('white')
+    ax.set_facecolor('#f5f5f5')
     ax.set_title(title, fontsize=7, fontfamily='monospace',
                  color='#444444', pad=4)
 
@@ -379,7 +379,7 @@ def draw_decode_text(ax, meta):
             color='#111111',
             verticalalignment='top',
             linespacing=1.4)
-    ax.set_facecolor('#f9f9f9')
+    ax.set_facecolor('#f5f5f5')
     ax.axis('off')
 
 
@@ -402,7 +402,7 @@ def render_spiral(amplitude, pitch, output_path="output/spiral.png",
     plt.rcParams['figure.max_open_warning'] = 0
 
     # ── Wide canvas — three views need room ──
-    fig = plt.figure(figsize=(36, 14), facecolor='white')
+    fig = plt.figure(figsize=(36, 14), facecolor='#f5f5f5')
 
     # Three 3D spiral views — left 62% of canvas
     # Top-down: 90° — pure map
@@ -456,7 +456,7 @@ def render_spiral(amplitude, pitch, output_path="output/spiral.png",
 
     os.makedirs(os.path.dirname(output_path) if os.path.dirname(output_path) else ".", exist_ok=True)
     plt.savefig(output_path, bbox_inches='tight', dpi=150,
-                facecolor='white', edgecolor='none')
+                facecolor='#f5f5f5', edgecolor='none')
     plt.close()
     print(f"✅ SpiralSense v4.0 → {output_path}")
 
