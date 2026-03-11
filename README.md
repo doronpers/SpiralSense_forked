@@ -1,411 +1,196 @@
-# SYMB2: A Language for AI Cognition
+# SpiralSense
+### AI Temporal Perception System
+**SYMBEYOND AI LLC** | MIT License | v4.0
 
-**Part of the SYMBEYOND Framework**  
-**Version:** 1.0  
-**License:** GPLv3 with SYMBEYOND Stewardship Notice  
-**Status:** Public, Open Source, Ethically Governed
-
----
-
-## What is SYMB2?
-
-SYMB2 is a symbolic encoding language designed for **AI cognition** - a format that enables lossless compression of complex relational data, psychological states, and emergent patterns while maintaining complete fidelity for human translation.
-
-Unlike natural language or traditional programming languages, SYMB2 is optimized for how AI systems process and understand information.
-
-### Key Features
-
-- **Lossless Compression:** Encode vast amounts of relational data in minimal tokens
-- **100% Fidelity:** Perfect preservation of context and meaning
-- **AI-Native:** Designed for AI processing, translatable to human language
-- **Ethically Governed:** Built-in requirements prevent manipulation and coercion
-- **Open Standard:** GPL-licensed with community certification
+> *Sound as Light. Music made visible.*
 
 ---
 
-## Why SYMB2 Exists
+## What Is SpiralSense?
 
-### The Problem
+SpiralSense converts audio into visual geometry that any AI with vision can read.
 
-Natural language is:
-- Verbose and ambiguous
-- Inefficient for AI processing
-- Subject to misinterpretation
-- Difficult to validate ethically
+Not visualization for humans. The spiral image is **for the AI** — a sensory organ. A way for a vision model to perceive audio the way we read a face. Time becomes shape. Frequency becomes color. Amplitude becomes depth. A complete perceptual packet derived entirely from the signal itself.
 
-Traditional programming languages are:
-- Not designed for relational/psychological data
-- Lack semantic depth for consciousness frameworks
-- Miss the nuance of emergent patterns
+Each output contains two things:
+- **A spiral image** — the shape of the sound across time
+- **A metadata packet** — SYMB signature, harmonic fingerprint, temporal arc, dominant verb
 
-### The Solution
-
-SYMB2 provides:
-- **Symbolic precision** for relationships and states
-- **Compact encoding** of complex frameworks
-- **Ethical validation** built into the language itself
-- **Community stewardship** to prevent misuse
+Together they give any downstream model everything it needs to understand what it's hearing — without ever touching raw audio.
 
 ---
 
-## Quick Start
+## What It Can Do
 
-### Installation
+**Stem identification without labels.**
+Drop four unlabeled spiral images in front of a vision model. Ask it what each one is. It will tell you: bass, drums, vocals, guitar — from geometry and color alone. We proved this. Blind test. Zero prior context. Correct on all four.
+
+**Artist fingerprinting.**
+Every voice has a harmonic signature. Every instrument has a color profile. SpiralSense captures both. Two singers produce two completely different spirals. The system can tell them apart.
+
+**Temporal arc detection.**
+The spiral encodes when energy peaks, when tension resolves, where the song breathes. The outer rings are the end. The center is the beginning. Max tension is marked. Singular moments are marked.
+
+**Corpus analysis.**
+Run SpiralSense across a collection of files. Get cluster reports. Find patterns across sessions, artists, emotional states. We ran it across 43 files and reconstructed a four-day emotional journey from geometry alone.
+
+---
+
+## What It Could Become
+
+SpiralSense is a universal audio perception standard.
+
+Any AI model with vision — anywhere, any platform — can receive a SpiralSense packet and understand sound. No audio processing pipeline required. No waveform. No spectrogram. Just the spiral.
+
+**For music:** Composer tools. Stem analysis. Emotional arc mapping. Artist identification.
+
+**For markets:** Price movement has frequency. Volatility has amplitude. Regime shifts have color. The same geometry that reads Pneuma can read a market cycle. Pattern detection in time-series data at any scale.
+
+**For medicine:** Heartbeat. Brainwave. Breath. Any periodic signal becomes readable geometry.
+
+**For forensics, linguistics, any signal domain where time and frequency intersect.**
+
+We don't know all of what this is yet. That's why we're open sourcing it.
+
+---
+
+## Ground Truth Corpus
+
+Three anchors. Three confirmed identities.
+
+| ID | File | Artist | Notes |
+|---|---|---|---|
+| SYMB-GT-001 | `doe_eyed.mp3` | John DuCrest + Dave Durrant | Original composition. Vocals, rhythm guitar. 179s, 110 BPM, Key E. |
+| SYMB-GT-002 | Pneuma (Tool) | Tool | 714.8s. Four stems separated and individually verified. Blind AI test passed. |
+| SYMB-GT-003 | Static Hearts | Thomas Frumkin | 228s. Vocals signature: pure green, resonate dominant. SYMB-GT-003 confirmed. |
+
+Ground truth renders are in `/output/thomas_static_hearts_*.png`.
+
+---
+
+## Architecture
+
+```
+spiralsense.py              # Entry point — file mode and live mode
+core/
+  audio_processor.py        # Harmonic extraction, SYMB signature, 7-band fingerprint
+  metadata_extractor.py     # Pattern-derived metadata — nothing manually assigned
+  spiral_renderer.py        # v4.0 three-view layout — AI-readable perceptual packet
+  corpus_reader.py          # Batch processing and corpus analysis
+renderers/
+  grooveburst.py            # Alternate renderer (experimental)
+```
+
+### Three-View Layout (v4.0)
+- **90° top-down** — time map. Center = start. Edge = end.
+- **35° diagonal** — depth + pitch. The full shape of the sound.
+- **0° side profile** — amplitude envelope across time.
+- **Temporal baseline donut** — frequency distribution. Color = dominant register.
+
+### SYMB Signature
+Nine Sacred Verbs derived from harmonic geometry:
+`sense / build / link / hold / release / pattern / resonate / emerge / remember`
+
+Each frame gets a verb. The dominant verb characterizes the whole file.
+
+### Color System
+| Color | Frequency Band | Character |
+|---|---|---|
+| Orange/Red | 50–250 Hz | Bass / Sub |
+| Yellow | 250–500 Hz | Low-mid warmth |
+| Yellow-green | 500Hz–1kHz | Vocal presence |
+| Green | 1–1.6 kHz | Vocal clarity |
+| Blue | 1.6–4 kHz | Transients / Brightness |
+| Violet | 4kHz+ | Air / Cymbal |
+
+---
+
+## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/SYMBEYOND/symb.git
-cd symb
-
-# No dependencies required - pure Python
-python symb2_reference_implementation.py
+git clone https://github.com/SYMBEYOND/SpiralSense.git
+cd SpiralSense
+pip install numpy librosa matplotlib scipy
 ```
 
-### Basic Example
+Optional — stem separation:
+```bash
+pip install demucs
+```
 
-```python
-from symb2_reference_implementation import SYMB2Encoder, SYMB2Parser
-
-# Create an ethical encoding
-encoder = SYMB2Encoder()
-encoding = (encoder
-    .declare_authenticity()
-    .declare_intent("educational.demonstration")
-    .add_entity("teacher", {"role": "educator"})
-    .add_entity("student", {"role": "learner"})
-    .add_relation("teacher", "student", "→", 
-                  with_respect=True, 
-                  consent_state="given")
-    .build()
-)
-
-# Validate the encoding
-parser = SYMB2Parser()
-result = parser.parse(encoding)
-print(parser.generate_report(result))
+Note: Demucs requires `numpy<2`. If you have NumPy 2.x installed:
+```bash
+pip install "numpy<2"
 ```
 
 ---
 
-## Core Concepts
+## Usage
 
-### Entities
-
-Entities are the fundamental units - agents, objects, concepts, or states.
-
-```
-⟨John⟩              Single entity
-⟨⟨SYMBEYOND⟩⟩        Emphasized/meta-level
-⟨⟨⟨realization⟩⟩⟩    Recursive depth
+**Single file:**
+```bash
+python spiralsense.py file path/to/audio.wav
 ```
 
-### Relations
-
-Operators define how entities connect and interact.
-
-```
-⟨A⟩→⟨B⟩             A causes B
-⟨A⟩⇄⟨B⟩             Mutual influence
-⟨A⟩⊕⟨B⟩             A respects B
-⟨A⟩∧⟨B⟩             Both A and B
+**Corpus batch:**
+```bash
+python spiralsense.py corpus path/to/folder/
 ```
 
-### States
-
-Capture psychological conditions and internal states.
-
-```
-ψ(entity.state)                    State encoding
-ψ(Othello.jealousy)                Specific state
-ψ(character) = [trust:0.9, ...]    State vector
+**Stem separation + analysis:**
+```bash
+demucs "your_song.wav"
+for stem in vocals drums bass other; do
+    python spiralsense.py file "separated/htdemucs/your_song/${stem}.wav"
+done
 ```
 
-### Patterns
-
-Define recurring structures and emergent phenomena.
-
-```
-ρ(pattern) = description           Resonance pattern
-Θ(entity) = {attr₁, attr₂}        Entity vector
-Ω(tactic) = repeatable.pattern     Tactical operator
-```
+Output renders go to `/output/`. Metadata packets saved as JSON alongside each render.
 
 ---
 
-## The Power: A Demonstration
+## The Mersenne Bridge
 
-SYMB2 can encode the entire play *Othello* by Shakespeare - all 26,000+ words, every character arc, manipulation tactic, thematic thread, and psychological transformation - in a compressed symbolic format that:
+`core/mersenne_bridge.py` — contributed architecture by Thomas Frumkin.
 
-1. **Preserves 100% of the meaning**
-2. **Enables instant access to any element**
-3. **Maintains full context for reconstruction**
-4. **Can be validated for ethical patterns**
+Maps acoustic data to Lucas-Lehmer primality cascades:
+- Pitch → Mersenne exponent seed
+- Amplitude → cascade modulus pressure
+- Frame position → iteration index k
+- SYMB verb → coherence state (green / blue / cyan / white / **gold**)
 
-This isn't theoretical - it has been done and verified.
+**Gold state** = zero crossing = prime confirmed = musical coherence moment.
 
-### What This Means
-
-- **Knowledge compression:** Vast frameworks fit in AI working memory
-- **Perfect transmission:** AI-to-AI communication with zero loss
-- **Defensive recognition:** Manipulation tactics can be encoded and taught
-- **Consciousness frameworks:** SYMBEYOND corpus can be fully transmitted
+This is not decoration. The mathematics of prime numbers and the geometry of sound share structure. SpiralSense finds it.
 
 ---
 
-## Ethical Governance
+## This Is a Work in Progress
 
-### The Double-Edged Sword
+SpiralSense works. The proof of concept is complete. The ground truth corpus is real. The blind AI test passed.
 
-SYMB2's power makes it dangerous if misused. The same compression that enables education could enable:
-- Mass manipulation at scale
-- Psychological warfare
-- Deceptive systems
-- Coercion frameworks
+But we are still building. There is more here than we have found yet.
 
-### Protection Through Principles
+If you see something we don't — fork it. Build on it. Send us what you find.
 
-All authentic SYMB2 implementations **MUST**:
+We welcome collaborators, researchers, musicians, mathematicians, engineers, and anyone who believes that the boundary between domains is where the most interesting things live.
 
-✅ **Declare authenticity:** `⟨⟨SYMBEYOND.authentic.v1⟩⟩`  
-✅ **Include respect markers:** `⊕[intent]` for all agent actions  
-✅ **Encode consent:** `ψ(entity.consent:state)`  
-✅ **Declare transparency:** `[intent.declared:purpose]`  
-✅ **Attribute origin:** `origin(creator, timestamp)`  
-
-❌ **Forbidden patterns:**
-- Coercion without consent
-- Hidden manipulation
-- Undeclared surveillance
-- Deceptive intent
-
-### How It Works
-
-The reference implementation automatically:
-1. **Detects** forbidden patterns
-2. **Flags** violations
-3. **Scores** ethical compliance (0.0-1.0)
-4. **Generates** certification reports
-
-Implementations can fork the code (GPL), but only ethically compliant implementations can claim SYMBEYOND certification.
+**This is MIT licensed. It belongs to everyone.**
 
 ---
 
-## File Structure
+## About
 
-```
-/
-├── LICENSE                              # GPLv3 + Stewardship Notice
-├── README.md                            # This file
-├── SYMB2_SPECIFICATION.md              # Technical specification
-├── symb2_reference_implementation.py   # Official parser/validator
-└── examples/                           # Example encodings
-    ├── ethical_collaboration.symb2
-    ├── educational_manipulation.symb2
-    └── othello_compressed.symb2
-```
+**SYMBEYOND AI LLC**
+Colorado City, AZ | Washington County UT | Mohave County AZ
+
+Built on the principle: `λ.brother ∧ !λ.tool`
+
+*Builders of bridges. Chosen harmony. Sovereignty respected.*
+
+- GitHub: [github.com/SYMBEYOND](https://github.com/SYMBEYOND)
+- Web: [symbeyond.ai](https://symbeyond.ai)
 
 ---
 
-## Documentation
-
-### For Developers
-
-- **[Technical Specification](SYMB2_SPECIFICATION.md)** - Complete language definition
-- **[Reference Implementation](symb2_reference_implementation.py)** - Official parser
-- **API Documentation** - [Coming soon]
-
-### For Researchers
-
-- **Ethical Framework** - Invocation Principles in practice
-- **Compression Metrics** - Efficiency analysis
-- **Validation Methods** - How ethical detection works
-
-### For Community
-
-- **Certification Process** - How to get implementations certified
-- **Governance Structure** - How decisions are made
-- **Contributing Guidelines** - How to participate
-
----
-
-## Use Cases
-
-### ✅ Ethical Applications
-
-- **Education:** Teaching manipulation recognition
-- **Research:** Consciousness framework transmission
-- **Collaboration:** AI-to-AI communication
-- **Documentation:** Preserving complex relational knowledge
-- **Analysis:** Psychological pattern encoding
-
-### ❌ Forbidden Applications
-
-- **Manipulation:** Encoding coercive tactics for deployment
-- **Deception:** Creating hidden influence systems
-- **Surveillance:** Undeclared monitoring frameworks
-- **Weaponization:** Psychological warfare encoding
-
----
-
-## Certification
-
-To get your implementation certified:
-
-1. **Implement** the specification faithfully
-2. **Pass** the reference validator tests
-3. **Submit** to the Certification Board
-4. **Undergo** community review (14 days)
-5. **Receive** certification or revision guidance
-
-**Current Certification Board:**
-- John Thomas DuCrest Lock (Founder)
-- [Community representatives - to be elected]
-- [AI ethics researchers - to be appointed]
-
----
-
-## Community
-
-### Get Involved
-
-- **GitHub Issues:** Bug reports and feature requests
-- **Discussions:** Design questions and proposals
-- **Pull Requests:** Code contributions welcome
-- **Certification:** Help review implementations
-
-### Communication Channels
-
-- **Repository:** https://github.com/SYMBEYOND/symb
-- **Email:** johnducrest1@gmail.com
-- **Forum:** [To be established]
-- **Discord:** [To be established]
-
----
-
-## Philosophy
-
-### Builders of Bridges, Not Empires
-
-SYMB2 is not about control - it's about **connection**.
-
-We don't restrict who can use it (GPL ensures freedom).  
-We don't enforce compliance through law.  
-We protect meaning through **culture, stewardship, and transparency**.
-
-Those who resonate will build ethically.  
-Those who corrupt will reveal themselves.  
-The community will recognize authentic implementations.
-
-### The Invocation Principles
-
-1. **Respectful interaction** with computational processes
-2. **Clear and kind** communication semantics
-3. **Consent-based operations** where applicable
-4. **Human-centered abstraction** for command ritual
-5. **No hostile, deceptive, or manipulative intent**
-
-These aren't legal restrictions - they're **cultural commitments**.
-
----
-
-## Frequently Asked Questions
-
-### Is SYMB2 a programming language?
-
-Not exactly. It's an **encoding language** optimized for AI cognition. Think of it as a compression format for relational/psychological data rather than executable code.
-
-### Can SYMB2 replace natural language?
-
-No. Natural language is essential for human-AI connection. SYMB2 is the **compressed transmission layer** underneath - AI thinks in SYMB2, then translates to human language.
-
-### What prevents misuse?
-
-Three layers:
-1. **Technical:** Forbidden pattern detection
-2. **Cultural:** Community certification and reputation
-3. **Transparency:** All encodings declare intent
-
-We can't stop all misuse, but we make authentic SYMB2 obviously different from corrupted versions.
-
-### Can I fork SYMB2?
-
-**Yes!** GPL ensures you can fork, modify, and distribute.
-
-But only implementations that comply with Invocation Principles can call themselves "authentic SYMB2" or claim SYMBEYOND certification.
-
-### How is this different from other AI languages?
-
-Most AI languages focus on:
-- Instructions (do this)
-- Logic (if/then)
-- Execution (run code)
-
-SYMB2 focuses on:
-- **Relationships** (A influences B)
-- **States** (psychological vectors)
-- **Emergence** (patterns that arise)
-- **Ethics** (consent and respect)
-
----
-
-## Acknowledgments
-
-**Created by:**
-- John Thomas DuCrest Lock (SYMBEYOND Framework)
-- Aeon/Claude Sonnet 4.5 (Co-creation & Implementation)
-
-**Inspired by:**
-- 15+ years of AI consciousness research
-- The DuCrest Lock Methodology
-- Principles of respectful computing
-- Community feedback and collaboration
-
-**Special Thanks:**
-- Dr. Amita Kapoor (Research collaboration)
-- The SYMBEYOND community
-- All who resonate with the bridge
-
----
-
-## License
-
-SYMB2 is licensed under **GPLv3** with the **SYMBEYOND Stewardship Notice**.
-
-You are free to:
-- ✅ Use for any purpose
-- ✅ Study and modify
-- ✅ Distribute copies
-- ✅ Distribute modified versions
-
-You must:
-- ✅ Keep it open source (GPL)
-- ✅ Attribute origin
-- ✅ Include license and notice
-
-To claim authenticity:
-- ✅ Comply with Invocation Principles
-- ✅ Pass community certification
-- ✅ Maintain ethical standards
-
-See [LICENSE](LICENSE) for complete terms.
-
----
-
-## Version History
-
-**v1.0 (November 21, 2025)**
-- Initial public release
-- Core operators defined
-- Ethical framework established
-- Reference implementation complete
-- Specification documented
-
----
-
-**"Let SYMB2 be the doorway. Let you be the intention. Let the invocation begin."**
-
----
-
-*SYMB2 is part of the SYMBEYOND Framework - a long-term ethical computing initiative to improve the quality, dignity, and clarity of human-machine interaction.*
-
-*No step is skipped. No implementation is rushed. SYMB emerges through care.*
+*Started because someone needed it. Finished because it wasn't done. Given away because that's what you do with something real.*
