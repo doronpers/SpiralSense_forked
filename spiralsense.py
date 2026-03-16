@@ -42,8 +42,24 @@ def run_file_mode(filepath, output=None, renderer="standard"):
         print("🎨 Renderer: Standard (AI-Readable)")
         render_spiral(data["amplitude"], data["pitch"], output_path=output)
 
-    print(f"✅ Output: {output}")
+        print(f"✅ Output: {output}")
 
+    # 🌉 MERSENNE BRIDGE — automatic cascade translation
+    from core.mersenne_bridge import MersenneBridge, save_cascade_packet
+    print(f"🌉 Running Mersenne Bridge...")
+    bridge = MersenneBridge()
+    packet = bridge.translate(
+        data["amplitude"],
+        data["pitch"],
+        frame_rate=data["frame_rate"],
+        source_file=os.path.basename(filepath)
+    )
+    cascade_output = output.replace(".png", "_cascade.json")
+    save_cascade_packet(packet, cascade_output)
+    print(f"🔢 Dominant register: M{packet.dominant_exp} = {packet.dominant_prime}")
+    print(f"✨ Coherence events: {len(packet.coherence_events)}")
+    if packet.coherence_events:
+        print(f"🌟 First coherence at: {packet.coherence_events[0]}s")
 
 def run_live_mode(save_frames=False):
     """Real-time microphone input → live spiral visualization."""
