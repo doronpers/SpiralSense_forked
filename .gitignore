@@ -1,3 +1,9 @@
+# SpiralSense generated output
+# JSON cascade packets are large generated artifacts; regenerate locally with spiralsense.py
+output/*.json
+# Derivative renders from commercially copyrighted audio must not be committed
+output/symb_gt_002_drums.png
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

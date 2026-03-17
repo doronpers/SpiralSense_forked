@@ -57,10 +57,11 @@ Three anchors. Three confirmed identities.
 | ID | File | Artist | Notes |
 |----|------|--------|-------|
 | SYMB-GT-001 | doe_eyed.mp3 | John DuCrest + Dave Durrant | Original composition. Vocals, rhythm guitar. 179s, 110 BPM, Key E. |
-| SYMB-GT-002 | Pneuma (Tool) | Tool | 714.8s. Four stems separated and individually verified. Blind AI test passed. |
+| SYMB-GT-002 | Pneuma (Tool) | Tool | 714.8s. Four stems separated and individually verified. Blind AI test passed. *(Audio not included — commercially copyrighted. Run SpiralSense against your own copy to reproduce.)* |
 | SYMB-GT-003 | Static Hearts | Thomas Frumkin | 225s. Vocals signature: pure green, resonate dominant. 1 canonical LL confirmation (p=3, t=0.06s) + 2 non-canonical zero-residue events (p=7 t=0.49s, p=13 t=170.53s). See Mersenne Bridge section. |
 
-Ground truth renders and cascade JSON in `/output/thomas_static_hearts_*.png` and `/output/spiral_thomas_static_hearts_cascade.json`.
+Ground truth renders for SYMB-GT-003 are in `/output/thomas_static_hearts_*.png`.
+The companion cascade JSON (`spiral_thomas_static_hearts_cascade.json`) is a large generated artifact (~10 MB) and is **not committed to the repository**. Run `python spiralsense.py file path/to/static_hearts.wav` to regenerate it locally.
 
 ---
 
