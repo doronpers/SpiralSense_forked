@@ -156,7 +156,103 @@ Output renders go to `/output/`. Every render automatically produces a companion
 
 ---
 
-## The Mersenne Bridge
+## Sonotheia Governance Integration
+
+`core/sonotheia_adapter.py` — built by SYMBEYOND AI LLC.
+
+SpiralSense integrates naturally with [Sonotheia](https://www.sonotheia.ai/), an explainable voice AI governance infrastructure for regulated industries (EU AI Act, FINRA, FinCEN, ISO/IEC 42001, NIST AI RMF).
+
+### Why It Fits
+
+Sonotheia-governance requires that every audio analysis decision be:
+- **Explainable** — tied to documentable acoustic measurements, not black-box scores
+- **Auditable** — full parameter trail so any result can be independently reproduced
+- **Privacy-safe** — no biometric audio storage, only derived measurements
+- **Versioned** — reproducible baselines for regulatory review
+- **Forensic** — court-ready documentation with measurement provenance
+
+SpiralSense already satisfies all of these requirements:
+- The SYMB signature is entirely deterministic from the waveform — no learned embeddings
+- The Mersenne Bridge cascade is pure mathematics, verifiable by anyone with the same inputs
+- The spiral image encodes frequency + time + amplitude with no opaque model weights
+- Every output carries a SHA-256 source fingerprint, never raw audio
+- All calibration parameters (frequency bucket boundaries, frame rate, amplitude multiplier) are explicit constants documented in source
+
+### How to Use
+
+**Generate a governance report alongside the spiral:**
+```bash
+python spiralsense.py file path/to/audio.wav --governance
+```
+
+This produces three outputs in `output/`:
+- `spiral_<name>.png` — the visual perception packet
+- `spiral_<name>_cascade.json` — the Mersenne Bridge mathematics
+- `spiral_<name>_governance.json` — the Sonotheia governance report
+
+**Governance report structure:**
+```
+GovernanceReport
+├── report_id              — unique ID (SYMB-GOV-XXXXXXXXXXXX)
+├── provenance             — source file hash, timestamp, version, calibration manifest
+├── measurements           — all deterministic acoustic measurements
+│     ├── duration_sec, mean/peak amplitude
+│     ├── dominant frequency, spectral centroid
+│     ├── dominant Mersenne register (M_p) and prime
+│     ├── coherence events (timestamps of cascade zero-crossings)
+│     ├── dominant Sacred Nine verb
+│     └── seven-band frequency fingerprint
+├── decision_trail         — 7-step derivation of every classification
+│     ├── step 01 — pitch sampling (pYIN, frame rate, frame count)
+│     ├── step 02 — frequency-to-Mersenne mapping (bucket boundaries)
+│     ├── step 03 — seed derivation (logarithmic mapping into prime range)
+│     ├── step 04 — cascade iteration (Lucas-Lehmer, amplitude-driven steps)
+│     ├── step 05 — coherence check (zero-crossing detection)
+│     ├── step 06 — Sacred Nine verb assignment (pitch register rules)
+│     └── step 07 — spiral render parameters
+├── spiral_image_path      — path to visual packet
+├── cascade_packet_path    — path to Mersenne Bridge JSON
+├── regulatory_frameworks  — list of applicable compliance standards
+└── audit_hash             — SHA-256 of the report body (tamper detection)
+```
+
+**Verify a saved report has not been tampered with:**
+```python
+from core.sonotheia_adapter import SonotheiaAdapter
+adapter = SonotheiaAdapter()
+adapter.verify_report("output/spiral_audio_governance.json")
+# [SonotheiaAdapter] Audit verification: ✅ INTACT
+```
+
+**Use the adapter programmatically:**
+```python
+from core.sonotheia_adapter import build_governance_report
+
+report = build_governance_report(
+    source_file       = "audio.wav",
+    spiral_data       = data,           # from process_audio()
+    cascade_packet    = packet,         # MersenneCascadePacket
+    spiral_image_path = "output/spiral_audio.png",
+    cascade_json_path = "output/spiral_audio_cascade.json",
+    output_path       = "output/spiral_audio_governance.json",
+)
+print(report.report_id)        # SYMB-GOV-XXXXXXXXXXXX
+print(report.audit_hash)       # SHA-256 fingerprint
+```
+
+### Supported Regulatory Frameworks
+
+| Framework | Relevance |
+|-----------|-----------|
+| EU AI Act (Article 13 — Transparency) | Explainable measurement-based decisions |
+| FINRA Rule 3110 (Supervision) | Auditable voice analysis in financial channels |
+| FinCEN SAR narrative support | Forensic documentation trail for suspicious activity |
+| ISO/IEC 42001 AI Management System | Versioned calibration and reproducible baselines |
+| NIST AI RMF (Govern 1.1 — Accountability) | Full accountability chain from audio to decision |
+
+---
+
+
 
 `core/mersenne_bridge.py` — built by John Thomas DuCrest Lock & Claude (SYMBEYOND AI LLC), with Lucas-Lehmer mathematical architecture by Thomas Frumkin.
 

@@ -18,7 +18,7 @@ import argparse
 import sys
 import os
 
-def run_file_mode(filepath, output=None, renderer="standard"):
+def run_file_mode(filepath, output=None, renderer="standard", governance=False):
     """Process an audio file and render a spiral visualization."""
     from core.audio_processor import process_audio
     from core.spiral_renderer import render_spiral
@@ -60,6 +60,25 @@ def run_file_mode(filepath, output=None, renderer="standard"):
     print(f"✨ Coherence events: {len(packet.coherence_events)}")
     if packet.coherence_events:
         print(f"🌟 First coherence at: {packet.coherence_events[0]}s")
+
+    # 🏛️ SONOTHEIA GOVERNANCE — optional governance report
+    if governance:
+        from core.sonotheia_adapter import build_governance_report
+        print(f"🏛️  Building Sonotheia governance report...")
+        base_output = os.path.splitext(output)[0]
+        governance_output = base_output + "_governance.json"
+        report = build_governance_report(
+            source_file       = filepath,
+            spiral_data       = data,
+            cascade_packet    = packet,
+            spiral_image_path = output,
+            cascade_json_path = cascade_output,
+            output_path       = governance_output,
+        )
+        print(f"📋 Report ID   : {report.report_id}")
+        print(f"🔒 Audit hash  : {report.audit_hash[:16]}...")
+        print(f"📐 Frameworks  : {len(report.regulatory_frameworks)} regulatory frameworks")
+        print(f"✅ Governance  : {governance_output}")
 
 def run_live_mode(save_frames=False):
     """Real-time microphone input → live spiral visualization."""
@@ -119,6 +138,7 @@ Examples:
   python spiralsense.py file music.wav
   python spiralsense.py file music.wav --output output/my_spiral.png
   python spiralsense.py file music.wav --renderer grooveburst
+  python spiralsense.py file music.wav --governance
   python spiralsense.py live
         """
     )
@@ -133,6 +153,9 @@ Examples:
                              choices=["standard", "grooveburst"],
                              default="standard",
                              help="Renderer to use (default: standard)")
+    file_parser.add_argument("--governance", "-g", action="store_true",
+                             help="Generate a Sonotheia-compatible governance report"
+                                  " alongside the spiral and cascade outputs")
 
     # Live mode
     live_parser = subparsers.add_parser("live", help="Real-time microphone visualization")
@@ -142,7 +165,8 @@ Examples:
     args = parser.parse_args()
 
     if args.mode == "file":
-        run_file_mode(args.filepath, args.output, args.renderer)
+        run_file_mode(args.filepath, args.output, args.renderer,
+                      getattr(args, "governance", False))
     elif args.mode == "live":
         run_live_mode(getattr(args, "save_frames", False))
 
